@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Good Dogs Only</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fff7ec;--fg:#2b1d12;--card:#fff;--mut:#7a6656;--acc:#ff8a3d;--accfg:#fff;--line:#f0dfc9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a120b;--fg:#fbeedd;--card:#261b12;--mut:#b9a48f;--line:#3a2a1c}}
+:root[data-theme="dark"]{--bg:#1a120b;--fg:#fbeedd;--card:#261b12;--mut:#b9a48f;--line:#3a2a1c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.5;text-align:center}
+main{max-width:640px;margin:auto;padding:40px 20px}
+h1{font-size:clamp(34px,8vw,56px);margin:0 0 8px}
+.sub{color:var(--mut);margin:0 0 28px}
+.big{font-size:88px;line-height:1;margin:8px 0;display:block}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:24px;margin:0 0 24px}
+.card h2{margin:0 0 4px;font-size:26px}
+.card p{margin:6px 0;color:var(--mut)}
+button{background:var(--acc);color:var(--accfg);border:0;border-radius:999px;padding:14px 28px;font:inherit;font-weight:700;font-size:17px;cursor:pointer;margin-top:12px}
+button:active{transform:scale(.97)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;text-align:left}
+.fact{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px}
+.fact b{display:block;font-size:20px}
+footer{color:var(--mut);font-size:13px;margin-top:28px}
+</style>
+</head>
+<body>
+<main>
+ <h1>🐾 Good Dogs Only</h1>
+ <p class="sub">Every dog is a good dog. Pick a random one.</p>
+
+ <div class="card" aria-live="polite">
+  <span class="big" id="emoji">🐕</span>
+  <h2 id="name">Tap the button!</h2>
+  <p id="fact">A random dog breed is waiting for you.</p>
+  <button id="pick">Find a dog</button>
+ </div>
+
+ <h2>Dog facts</h2>
+ <div class="facts">
+  <div class="fact"><b>👃 300M</b>Dogs have about 300 million scent receptors. We have around 6 million.</div>
+  <div class="fact"><b>💤 12+ hrs</b>Most adult dogs sleep 12 to 14 hours a day.</div>
+  <div class="fact"><b>🐶 Tail wags</b>A wag to the right often means happy; to the left, unsure.</div>
+  <div class="fact"><b>🦴 42 teeth</b>Adult dogs have 42 teeth, compared with our 32.</div>
+ </div>
+
+ <footer>Made with love for dogs everywhere 🦴</footer>
+</main>
+<script>
+var DOGS=[
+ ["🐕","Labrador Retriever","Friendly, eager and famously food-motivated. Loves water."],
+ ["🐩","Poodle","One of the smartest breeds, and comes in three sizes."],
+ ["🌭","Dachshund","Bred to hunt badgers, hence the long, low body and big personality."],
+ ["🐺","Siberian Husky","Built for cold weather and loves to 'talk' back to you."],
+ ["🦮","Golden Retriever","Gentle, loyal and always up for a game of fetch."],
+ ["🐕‍🦺","German Shepherd","Brave, trainable and a favorite for service work."],
+ ["🐶","Corgi","Short legs, big ears and a herding instinct that never turns off."],
+ ["🐾","Beagle","Follows its nose everywhere. Guard your snacks."],
+ ["🐕","Border Collie","Extremely clever and needs a job to stay happy."],
+ ["🐶","Pug","Small, snorty and convinced it is a lap dog of great importance."]
+];
+var last=-1;
+document.getElementById("pick").onclick=function(){
+ var i;do{i=Math.floor(Math.random()*DOGS.length)}while(i===last);
+ last=i;
+ document.getElementById("emoji").textContent=DOGS[i][0];
+ document.getElementById("name").textContent=DOGS[i][1];
+ document.getElementById("fact").textContent=DOGS[i][2];
+ this.textContent="Another one!";
+};
+</script>
+</body>
+</html>
